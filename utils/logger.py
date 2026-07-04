@@ -26,9 +26,6 @@ class Logger:
             level: Logging level (DEBUG, INFO, WARNING, ERROR)
             console_output: Whether to also log to console
         """
-        if cls._instance is not None:
-            return cls._instance
-
         logger = logging.getLogger("retroMaid")
         logger.setLevel(getattr(logging, level.upper()))
 
