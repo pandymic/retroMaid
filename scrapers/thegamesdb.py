@@ -148,8 +148,9 @@ class TheGamesDB(BaseScraper):
             params['apikey'] = self.api_key
 
         try:
-            logger.debug(f"TheGamesDB request: {endpoint} with params: {params}")
             response = requests.get(url, params=params, timeout=30)
+            logger.debug(f"TheGamesDB request URL: {response.url}")
+            logger.debug(f"TheGamesDB response ({response.status_code}): {response.text}")
 
             if response.status_code == 429:
                 raise TheGamesDBError("Rate limit exceeded")
