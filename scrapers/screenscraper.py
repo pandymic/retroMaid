@@ -164,8 +164,9 @@ class ScreenScraper(BaseScraper):
         all_params = {**self._build_auth_params(), **params}
 
         try:
-            logger.debug(f"ScreenScraper request: {endpoint} with params: {params}")
             response = requests.get(url, params=all_params, timeout=30)
+            logger.debug(f"ScreenScraper request URL: {response.url}")
+            logger.debug(f"ScreenScraper response ({response.status_code}): {response.text}")
 
             # Check for HTTP errors
             if response.status_code == 429:

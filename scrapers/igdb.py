@@ -213,8 +213,10 @@ class IGDB(BaseScraper):
         }
 
         try:
-            logger.debug(f"IGDB request to {endpoint}: {query}")
+            logger.debug(f"IGDB request URL: {url}")
+            logger.debug(f"IGDB request body: {query.strip()}")
             response = requests.post(url, headers=headers, data=query, timeout=30)
+            logger.debug(f"IGDB response ({response.status_code}): {response.text}")
 
             if response.status_code == 429:
                 raise RateLimitError("Rate limit exceeded")
